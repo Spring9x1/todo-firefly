@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spring's To-Do List</title>
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+    <div class="todo-bubble">
+      <h2>@spring</h2>
+      <p><strong>📝 To-Do List</strong></p>
+      <p style="color: #aecdc7">🕒 Current Time: <span id="clock"></span></p>
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Enter a new task" />
+        <button onclick="addTask()">Add</button>
+      </div>
+      <ul id="taskList"></ul>
+      <!-- Bubble popup -->
+        <div id="firefly-popup" class="popup">
+            <img src="./assets/firefly_kuru.gif" alt="Firefly celebrating" />
+            <div class="popup-text">
+            Yey, your task is finally complete!~ now we can do something together 💖
+            </div>
+        </div>
+  
+    </div>
+
+    <div class="firefly-container">
+      <img src="./assets/firefly.png" alt="Firefly" />
+      <div class="firefly-bubble">
+        Here's your to-do-list. Good luck on finishing it! 💪✨
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
