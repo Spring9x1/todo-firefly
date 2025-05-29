@@ -1,4 +1,4 @@
-
+/* === GLOBAL === */
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +9,7 @@ body {
   align-items: center;
 }
 
+/* === CONTAINER === */
 .container {
   display: flex;
   justify-content: center;
@@ -16,8 +17,9 @@ body {
   position: relative;
 }
 
+/* === TODO BUBBLE === */
 .todo-bubble {
-    position: relative;
+  position: relative;
   background-color: #14151C;
   border: 2px solid #1C3D84;
   border-radius: 20px;
@@ -26,7 +28,7 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   color: white;
   min-width: 350px;
-  max-width: 500;
+  max-width: 500px; /* fix typo: 500 → 500px */
   margin: auto;
 }
 
@@ -35,6 +37,7 @@ body {
   color: #AEE1F9;
 }
 
+/* === INPUT FIELD + BUTTON === */
 .input-group {
   display: flex;
   margin-top: 10px;
@@ -61,11 +64,12 @@ button {
 }
 
 button:hover {
-    background-color: #28a745;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #28a745;
+  background-color: #28a745;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #28a745;
 }
 
+/* === TASK LIST === */
 ul {
   list-style-type: none;
   padding: 0;
@@ -85,119 +89,256 @@ li:hover {
   background-color: #393b5a;
 }
 
+/* === TASK ITEM STYLING === */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: #1e1e2f;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+/* === TASK ACTIONS (BUTTONS INSIDE TASK) === */
+.task-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  justify-items: auto;
+}
+
+.task-actions button {
+  margin-left: 8px;
+  background-color: #2a2c45;
+  border: none;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.task-actions button:hover {
+  background-color: #393b5a;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* === FIREFLY CHARACTER & BUBBLE === */
 .firefly-container {
-  position: absolute;
+  position: fixed;
+  top: 20%;
   right: 30px;
-  top: 50px;
-  text-align: center;
-  width: 180px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .firefly-container img {
-  width: 120px;
+  width: 80px;
   height: auto;
-  border-radius: 50%;
 }
 
 .firefly-bubble {
-  background-color: #fff;
-  color: #333;
+  background-color: white;
+  color: black;
   padding: 10px;
   border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
-  font-size: 14px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 200px;
 }
 
+
+.firefly-hover {
+  display: flex;
+  width: 120px;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
+}
+
+
+
+/* === POPUP (FIREFLY KONFIRMASI) === */
+.popup {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid #28a745;
+  border-radius: 16px;
+  padding: 12px;
+  z-index: 999;
+  color: white;
+  width: 280px;
+  box-shadow: 0 0 10px #28a745;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.popup img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.popup-text {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.popup-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.popup-image {
+  position: fixed;
+  padding: 50px;
+  margin-top: 50px;
+  top: 50%;
+  right: 20px; /* jarak dari sisi kanan layar */
+  width: 120px;
+  height: auto;
+  display: none;
+  z-index: 999;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.popup-wrapper:hover .popup-image {
+  display: block;
+}
+
+.popup-container {
+  position: sticky;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.popup-container img {
+  display: none;
+  width: 120px; /* atau berapa pun yang kamu mau */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+
+
+/* === CONFIRM ALERT === */
+.confirm-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Buat gelap belakang */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* pastikan tampil di atas segalanya */
+}
+
+.confirm-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.confirm-box img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.confirm-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#confirmYes {
+  background-color: #ff4c4c;
+  color: white;
+}
+
+#confirmNo {
+  background-color: #555;
+  color: white;
+}
+
+
+/* === ANIMASI POPUP === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0px); }
+}
+
+/* === RESPONSIVE DESIGN === */
 @media screen and (max-width: 600px) {
   .container {
     flex-direction: column;
     align-items: center;
   }
-
+  
   .firefly-container {
     position: static;
     margin-top: 30px;
   }
 }
-.task-actions {
-    float: right;
-}
-.task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 12px;
-    background: #1e1e2f;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    color: #eee;
-}
 
-.task-actions {
-display: flex;
-gap: 10px;
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
 }
-
-.icon-btn {
-    width: 28px;
-    height: 28px;
-  }
-  
-
-.icon-btn:hover {
-    transform: scale(1.1);
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 86, 55, 0.359);
+  z-index: 0;
 }
-
-.task-actions button {
-    margin-left: 8px;
-    background-color: #2a2c45;
-    border: none;
-    color: #eee;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 8px;
-    padding: 8px 12px;
-    transition: all 0.2s ease;
-  }
-  
-  .task-actions button:hover {
-    background-color: #393b5a;
-    color: #fff;
-    transform: scale(1.05);
-  }
-  
-/* Pop-up Firefly */
-.popup {
-display: none;
-position: fixed;
-bottom: 20px;
-left: 20px;
-background: rgba(20, 20, 20, 0.9);
-border: 2px solid #28a745;
-border-radius: 16px;
-padding: 12px;
-z-index: 999;
-color: white;
-width: 280px;
-box-shadow: 0 0 10px #28a745;
-animation: fadeIn 0.5s ease-in-out;
-}
-
-.popup img {
-width: 100%;
-border-radius: 12px;
-}
-
-.popup-text {
-margin-top: 10px;
-font-size: 14px;
-text-align: center;
-}
-
-/* Animasi popup muncul */
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-

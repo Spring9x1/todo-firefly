@@ -31,7 +31,7 @@ function createTaskElement(taskText, isCompleted) {
     const actions = document.createElement('div');
     actions.className = 'task-actions';
   
-    // Icon checklist toggle
+    // Icon checklist toggle isComplete
     const checkBtn = document.createElement('img');
     checkBtn.src = isCompleted ? './assets/firefly_approve.png' : './assets/firefly_think.jpeg';
     checkBtn.className = 'icon-btn';
@@ -48,7 +48,7 @@ function createTaskElement(taskText, isCompleted) {
   
     // Icon delete
     const deleteBtn = document.createElement('img');
-    deleteBtn.src = './assets/firefly_tonjok.png';
+    deleteBtn.src = './assets/firefly_duar.jpg';
     deleteBtn.className = 'icon-btn';
     deleteBtn.title = 'Delete task';
     deleteBtn.onclick = () => {
@@ -104,16 +104,103 @@ function checkAllCompleted() {
   popup.style.display = allDone ? 'block' : 'none';
 }
 
-function clearAllTasks() {
-  if (confirm('Are you sure you want to delete all tasks?')) {
-    localStorage.removeItem('tasks');
-    document.getElementById('taskList').innerHTML = '';
+
+
+document.getElementById('checkAll').addEventListener('click', () => {
+  const taskList = document.getElementById('taskList');
+  const tasks = [];
+
+  Array.from(taskList.children).forEach(li => {
+    const span = li.querySelector('span');
+    const text = span.textContent;
+    span.style.textDecoration = "line-through";
+    span.style.opacity = "0.6";
+
+    const checkBtn = li.querySelector('.icon-btn');
+    if (checkBtn) checkBtn.src = './assets/firefly_approve.png';
+
+    tasks.push({ text, done: true });
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  checkAllCompleted();
+});
+
+document.getElementById('uncheckAll').addEventListener('click', () => {
+  const taskList = document.getElementById('taskList');
+  const tasks = [];
+
+  Array.from(taskList.children).forEach(li => {
+    const span = li.querySelector('span');
+    const text = span.textContent;
+    span.style.textDecoration = "none";
+    span.style.opacity = "1";
+
+    const checkBtn = li.querySelector('.icon-btn');
+    if (checkBtn) checkBtn.src = './assets/firefly_think.jpeg';
+
+    tasks.push({ text, done: false });
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  checkAllCompleted();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const popupImage = document.getElementById("popupImage");
+  const checkBtn = document.getElementById("checkAll");
+  const uncheckBtn = document.getElementById("uncheckAll");
+  const clearBtn = document.getElementById("clearAll");
+  const confirmPopup = document.getElementById("confirmPopup");
+  const confirmYes = document.getElementById("confirmYes");
+  const confirmNo = document.getElementById("confirmNo");
+
+  checkBtn.addEventListener("mouseenter", () => {
+    popupImage.src = "./assets/firefly_lick.gif";
+    popupImage.style.display = "block";
+  });
+  checkBtn.addEventListener("mouseleave", () => {
+    popupImage.style.display = "none";
+  });
+
+  uncheckBtn.addEventListener("mouseenter", () => {
+    popupImage.src = "./assets/firefly_no.png";
+    popupImage.style.display = "block";
+  });
+  uncheckBtn.addEventListener("mouseleave", () => {
+    popupImage.style.display = "none";
+  });
+
+  clearBtn.addEventListener("mouseenter", () => {
+    popupImage.src = "./assets/firefly_duar.jpg"; // Bisa diganti sesuai file kamu
+    popupImage.style.display = "block";
+  });
+  clearBtn.addEventListener("mouseleave", () => {
+    popupImage.style.display = "none";
+  });
+
+  clearBtn.addEventListener("click", () => {
+    console.log("ini terclick");
+    confirmPopup.style.display = "flex";
+  });
+
+  confirmYes.addEventListener("click", () => {
+    localStorage.removeItem("tasks");
+    document.getElementById("taskList").innerHTML = "";
+    confirmPopup.style.display = "none";
     checkAllCompleted();
-  }
-}
+  });
+
+  confirmNo.addEventListener("click", () => {
+    confirmPopup.style.display = "none";
+  });
+});
+
+
     // Jam real-time
     setInterval(() => {
         const now = new Date();
         document.getElementById('clock').innerText = now.toLocaleTimeString();
       }, 1000);
+      
   
