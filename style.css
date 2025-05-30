@@ -24,23 +24,56 @@ body {
   border: 2px solid #1C3D84;
   border-radius: 20px;
   padding: 30px 40px;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: white;
   min-width: 350px;
-  max-width: 500px; /* fix typo: 500 → 500px */
+  max-width: 500px;
   margin: auto;
+  font-family: 'CustomFont2';
 }
 
 .todo-bubble h2 {
-  margin-top: 0;
+  display: flex;
+  align-items: center;
   color: #AEE1F9;
+  font-size: 40px;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #1e1e2e;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: #aecdc7;
+}
+
+.mini-profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  object-fit: cover;
 }
 
 /* === INPUT FIELD + BUTTON === */
 .input-group {
   display: flex;
   margin-top: 10px;
+  height: 75px;
+  border: 2px solid #1C3D84; /* Border di sekeliling input + button */
+  border-radius: 12px;
+  padding: 5px; /* Biar kontennya gak mepet ke border */
+  box-shadow: 0 0 10px #1C3D84;
+  background-color: #1a1a2e; /* Tambahin background kalau perlu */
 }
 
 input[type="text"] {
@@ -50,6 +83,20 @@ input[type="text"] {
   border: none;
   background-color: #1a1a2e;
   color: white;
+  font-size: 20px;
+}
+
+.buttonAdd {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: all 0.2s ease-in-out;
+  width: 100px;
+  font-size: 25px;
 }
 
 button {
@@ -60,7 +107,9 @@ button {
   border-radius: 8px;
   cursor: pointer;
   margin-left: 5px;
+  font-size: 0x;
   transition: all 0.2s ease-in-out;
+  width: 100x;
 }
 
 button:hover {
@@ -74,6 +123,7 @@ ul {
   list-style-type: none;
   padding: 0;
   margin-top: 20px;
+
 }
 
 li {
@@ -98,6 +148,7 @@ li:hover {
   background: #1e1e2f;
   border-radius: 8px;
   margin-bottom: 10px;
+  font-size: 20px;
   color: #eee;
 }
 
@@ -105,6 +156,8 @@ li:hover {
 .task-actions {
   display: flex;
   gap: 10px;
+  height: 50px;
+  width:  auto;
   justify-content: center;
   justify-items: auto;
 }
@@ -121,6 +174,8 @@ li:hover {
   transition: all 0.2s ease;
 }
 
+
+
 .task-actions button:hover {
   background-color: #393b5a;
   color: #fff;
@@ -128,8 +183,8 @@ li:hover {
 }
 
 .icon-btn {
-  width: 28px;
-  height: 28px;
+  width: 50px;
+  height: 50px;
 }
 
 .icon-btn:hover {
@@ -148,7 +203,7 @@ li:hover {
 }
 
 .firefly-container img {
-  width: 80px;
+  width: 200px;
   height: auto;
 }
 
@@ -160,7 +215,9 @@ li:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
   text-align: center;
-  max-width: 200px;
+  max-width: 300px;
+  max-height: 300px;
+  font-size: 25px;
 }
 
 
@@ -186,7 +243,7 @@ li:hover {
   padding: 12px;
   z-index: 999;
   color: white;
-  width: 280px;
+  width: 400px;
   box-shadow: 0 0 10px #28a745;
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -198,7 +255,7 @@ li:hover {
 
 .popup-text {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 26px;
   text-align: center;
 }
 
@@ -213,7 +270,8 @@ li:hover {
   padding: 50px;
   margin-top: 50px;
   top: 50%;
-  right: 20px; /* jarak dari sisi kanan layar */
+  right: 20px;
+  /* jarak dari sisi kanan layar */
   width: 120px;
   height: auto;
   display: none;
@@ -237,10 +295,11 @@ li:hover {
 
 .popup-container img {
   display: none;
-  width: 120px; /* atau berapa pun yang kamu mau */
+  width: 120px;
+  /* atau berapa pun yang kamu mau */
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -252,11 +311,13 @@ li:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Buat gelap belakang */
+  background: rgba(0, 0, 0, 0.6);
+  /* Buat gelap belakang */
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* pastikan tampil di atas segalanya */
+  z-index: 9999;
+  /* pastikan tampil di atas segalanya */
 }
 
 .confirm-box {
@@ -299,16 +360,34 @@ li:hover {
   color: white;
 }
 
+#confirmOk {
+  background-color: #ff4c4c;
+  color: white;
+}
 
 /* === ANIMASI POPUP === */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(100px); }
-  to { opacity: 1; transform: translateX(0px); }
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
 /* === RESPONSIVE DESIGN === */
@@ -317,7 +396,7 @@ li:hover {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .firefly-container {
     position: static;
     margin-top: 30px;
@@ -333,6 +412,7 @@ li:hover {
   z-index: -1;
   object-fit: cover;
 }
+
 .overlay {
   position: fixed;
   top: 0;
@@ -341,4 +421,18 @@ li:hover {
   height: 100%;
   background: rgba(26, 86, 55, 0.359);
   z-index: 0;
+}
+
+@font-face {
+  font-family: "CustomFont";
+  src: url('./assets/Bubblegum.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CustomFont2";
+  src: url('./assets/SugarFruit.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }

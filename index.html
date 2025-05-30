@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spring's To-Do List</title>
 
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <video autoplay muted loop id="bgVideo">
     <source src="./assets/FF.mp4" type="video/mp4">
@@ -15,56 +17,72 @@
   <div class="overlay"></div>
   <div class="container">
     <div class="todo-bubble">
-      <h2>@spring</h2>    
-      <p><strong>📝 To-Do List</strong></p>
-      <p style="color: #aecdc7">🕒 Current Time: <span id="clock"></span></p>
+      <div class="header-profile">
+        <div class="mini-profile" >
+          <img src="./assets/firefly_pfp.png" alt="Firefly Avatar" > 
+        </div>
+        <h2>Spring_Haru</h2>
+      </div>
+
+      <p style="font-family: 'CustomFont2'; font-size: 35px;" ;>📝 Spring To-Do List</p>
+      <p style="color: #aecdc7; font-size: 25px;">🕒 Current Time: <span id="clock"></span></p>
       <div class="input-group">
         <input type="text" id="taskInput" placeholder="Enter a new task" />
-        <button onclick="addTask()">Add</button>
+        <button class="buttonAdd" onclick="addTask()">Add</button>
       </div>
       <ul id="taskList"></ul>
       <div class="todo-container">
         <!-- ... semua isi todo list kamu di sini ... -->
-      
+
         <div class="task-actions">
           <button id="checkAll" class="hover-btn" data-img="./assets/firefly_lick.gif">Check All</button>
           <button id="uncheckAll" class="hover-btn" data-img="./assets/firefly_think.jpeg">Uncheck All</button>
           <button id="clearAll" class="hover-btn" data-img="./assets/firefly_tonjok.png">Clear All</button>
         </div>
-      
-      <!-- Bubble popup -->
-        <div id="firefly-popup" class="popup">
-            <img src="./assets/firefly_kuru.gif" alt="Firefly celebrating" />
-            <div class="popup-text">
-            Yey, your task is finally complete!~ now we can do something together 💖
-            </div>
-        </div>
-    </div>
 
-    <div class="firefly-container">
-      <img src="./assets/firefly.png" alt="Firefly"  />
-      <div class="firefly-bubble">
-        Here's your to-do-list. Good luck on finishing it! 💪✨
+        <!-- Bubble popup -->
+        <div id="firefly-popup" class="popup">
+          <img src="./assets/firefly_kuru.gif" alt="Firefly celebrating" />
+          <div class="popup-text">
+            Yey, your task is finally complete!~ now we can spend some timetogether 💖
+          </div>
+        </div>
+      </div>
+
+      <div class="firefly-container">
+        <img src="./assets/firefly.png" alt="Firefly" />
+        <div class="firefly-bubble">
+          Here's your to-do-list. Good luck on finishing it! 💪✨
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- HTML di bagian akhir -->
-  <img id="popupImage" class="popup-image" src="" alt="Firefly reaction" />
+    <!-- HTML di bagian akhir -->
+    <img id="popupImage" class="popup-image" src="" alt="Firefly reaction" />
 
-  <script src="script.js"></script>
-  
-  <!-- Popup Confirm Clear -->
-<div class="confirm-popup" id="confirmPopup">
-  <div class="confirm-box">
-    <img src="./assets/firefly_crying.jpg" alt="Firefly" />
-    <p>Do you really wanna scrap your list?</p>
-    <div class="confirm-buttons">
-      <button id="confirmYes">Yes</button>
-      <button id="confirmNo">No</button>
+    <script src="script.js"></script>
+
+    <!-- Popup Confirm Clear -->
+    <div class="confirm-popup" id="confirmPopup">
+      <div class="confirm-box">
+        <img src="./assets/firefly_crying.jpg" alt="Firefly" />
+        <p>Do you really wanna scrap your list?</p>
+        <div class="confirm-buttons">
+          <button id="confirmYes">Yes</button>
+          <button id="confirmNo">No</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+    
+    <div class="confirm-popup" id="confirmPopupNoData">
+      <div class="confirm-box">
+        <img src="./assets/firefly_chibi_smile.png" alt="Firefly" />
+        <p>Currently You Don't Have Any Task</p>
+        <div class="confirm-buttons">
+          <button id="confirmOk">Ok</button>
+        </div>
+      </div>
+    </div>
 </body>
 
 

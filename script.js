@@ -15,54 +15,65 @@ function addTask() {
   saveTaskToStorage(task, false);
   input.value = '';
   checkAllCompleted();
+
+ sortListItems();
+}
+
+function sortListItems() {
+  const list = document.getElementById('taskList');
+  const items = Array.from(list.children);
+
+  items.sort((a, b) => a.textContent.localeCompare(b.textContent));
+
+  items.forEach(item => list.appendChild(item));
 }
 
 function createTaskElement(taskText, isCompleted) {
-    const li = document.createElement('li');
-    li.className = 'task-item';
-    
-    const span = document.createElement('span');
-    span.textContent = taskText;
-    if (isCompleted) {
-      span.style.textDecoration = "line-through";
-      span.style.opacity = "0.6";
-    }
-  
-    const actions = document.createElement('div');
-    actions.className = 'task-actions';
-  
-    // Icon checklist toggle isComplete
-    const checkBtn = document.createElement('img');
-    checkBtn.src = isCompleted ? './assets/firefly_approve.png' : './assets/firefly_think.jpeg';
-    checkBtn.className = 'icon-btn';
-    checkBtn.title = 'Mark as complete';
-    checkBtn.onclick = () => {
-      isCompleted = !isCompleted;
-      span.style.textDecoration = isCompleted ? "line-through" : "none";
-      span.style.opacity = isCompleted ? "0.6" : "1";
-      checkBtn.src = isCompleted ? './assets/firefly_approve.png' : './assets/firefly_think.jpeg';
-      updateTaskStatus(taskText, isCompleted);
-      checkAllCompleted();
-    };
-    actions.appendChild(checkBtn);
-  
-    // Icon delete
-    const deleteBtn = document.createElement('img');
-    deleteBtn.src = './assets/firefly_duar.jpg';
-    deleteBtn.className = 'icon-btn';
-    deleteBtn.title = 'Delete task';
-    deleteBtn.onclick = () => {
-      li.remove();
-      deleteTaskFromStorage(taskText);
-      checkAllCompleted();
-    };
-    actions.appendChild(deleteBtn);
-  
-    li.appendChild(span);
-    li.appendChild(actions);
-    return li;
+  const li = document.createElement('li');
+  li.className = 'task-item';
+
+  const span = document.createElement('span');
+  span.textContent = taskText;
+  if (isCompleted) {
+    span.style.textDecoration = "line-through";
+    span.style.opacity = "0.6";
   }
-  
+
+  const actions = document.createElement('div');
+  actions.className = 'task-actions';
+
+  // Icon checklist toggle isComplete
+  const checkBtn = document.createElement('img');
+  checkBtn.src = isCompleted ? './assets/firefly_approve.png' : './assets/firefly_think.jpeg';
+  checkBtn.className = 'icon-btn';
+  checkBtn.title = 'Mark as complete';
+  checkBtn.onclick = () => {
+    isCompleted = !isCompleted;
+    span.style.textDecoration = isCompleted ? "line-through" : "none";
+    span.style.opacity = isCompleted ? "0.6" : "1";
+    checkBtn.src = isCompleted ? './assets/firefly_approve.png' : './assets/firefly_think.jpeg';
+    updateTaskStatus(taskText, isCompleted);
+    checkAllCompleted();
+  };
+  actions.appendChild(checkBtn);
+
+  // Icon delete
+  const deleteBtn = document.createElement('img');
+  deleteBtn.src = './assets/firefly_duar.jpg';
+  deleteBtn.className = 'icon-btn';
+  deleteBtn.title = 'Delete task';
+  deleteBtn.onclick = () => {
+    li.remove();
+    deleteTaskFromStorage(taskText);
+    checkAllCompleted();
+  };
+  actions.appendChild(deleteBtn);
+
+  li.appendChild(span);
+  li.appendChild(actions);
+  return li;
+}
+
 function saveTaskToStorage(taskText, isCompleted) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push({ text: taskText, done: isCompleted });
@@ -85,6 +96,7 @@ function updateTaskStatus(taskText, isCompleted) {
 }
 
 function loadTasks() {
+
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const taskList = document.getElementById('taskList');
 
@@ -152,8 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const uncheckBtn = document.getElementById("uncheckAll");
   const clearBtn = document.getElementById("clearAll");
   const confirmPopup = document.getElementById("confirmPopup");
+  const confirmPopupNoData = document.getElementById("confirmPopupNoData");
   const confirmYes = document.getElementById("confirmYes");
   const confirmNo = document.getElementById("confirmNo");
+  const confirmOk = document.getElementById("confirmOk");
 
   checkBtn.addEventListener("mouseenter", () => {
     popupImage.src = "./assets/firefly_lick.gif";
@@ -180,8 +194,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   clearBtn.addEventListener("click", () => {
-    console.log("ini terclick");
-    confirmPopup.style.display = "flex";
+    const taskListItems = document.querySelectorAll("#taskList li");
+    if(taskListItems.length === 0 ){
+      confirmPopupNoData.style.display = "flex";
+      console.log("no data");
+    } 
+    if(taskListItems.length > 0 ) {
+      console.log("ini terclick");
+      confirmPopup.style.display = "flex";  
+    }
   });
 
   confirmYes.addEventListener("click", () => {
@@ -194,13 +215,16 @@ document.addEventListener("DOMContentLoaded", function () {
   confirmNo.addEventListener("click", () => {
     confirmPopup.style.display = "none";
   });
+
+  confirmOk.addEventListener("click", () => {
+    confirmPopupNoData.style.display = "none";
+  });
 });
 
 
-    // Jam real-time
-    setInterval(() => {
-        const now = new Date();
-        document.getElementById('clock').innerText = now.toLocaleTimeString();
-      }, 1000);
-      
-  
+// Jam real-time
+setInterval(() => {
+  const now = new Date();
+  document.getElementById('clock').innerText = now.toLocaleTimeString();
+}, 1000);
+
